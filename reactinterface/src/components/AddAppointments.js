@@ -13,6 +13,7 @@ class AddAppointments extends Component{
             aptTime:'',
             aptNotes:''
         }
+        this.handleAdd = this.handleAdd.bind(this)
         this.handleChange = this.handleChange.bind(this)
     }
 
@@ -24,6 +25,26 @@ class AddAppointments extends Component{
         this.setState({
             [name]: value
         })
+    }
+    handleAdd(e){
+        e.preventDefault();
+        let tempApt = {
+            petName: this.state.petName,
+            ownerName: this.state.ownerName,
+            aptDate: this.state.aptDate + ' ' + this.state.aptTime,
+            aptNotes: this.state.aptNotes
+        }
+
+        this.props.addApt(tempApt);
+
+        this.setState({
+            petName:'',
+            ownerName:'',
+            aptDate:'',
+            aptTime:'',
+            aptNotes:''
+        })
+        this.props.toggleForm();
     }
     render(){
         return(
