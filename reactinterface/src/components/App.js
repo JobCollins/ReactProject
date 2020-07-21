@@ -102,7 +102,8 @@ class App extends Component {
                   addApt ={this.addApt}
                 />
                 <SearchAppointments 
-
+                orderBy={this.state.orderBy}
+                orderDir={this.state.orderDir}
                 />
                 <ListAppointments 
                   appointments={filteredApts}
