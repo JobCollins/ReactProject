@@ -20,6 +20,7 @@ class App extends Component {
       lastIndex: 0,
     }
     this.toggleForm = this.toggleForm.bind(this);
+    this.changeOrder = this.changeOrder.bind(this)
     this.addApt = this.addApt.bind(this);
     this.deleteAppointment = this.deleteAppointment.bind(this);
   }
@@ -27,6 +28,13 @@ class App extends Component {
   toggleForm(){
     this.setState({
       formDisplay: !this.state.formDisplay
+    })
+  }
+
+  changeOrder(order, dir){
+    this.setState({
+      orderBy: order,
+      orderDir: dir
     })
   }
 
@@ -104,6 +112,7 @@ class App extends Component {
                 <SearchAppointments 
                 orderBy={this.state.orderBy}
                 orderDir={this.state.orderDir}
+                changeOrder={this.changeOrder}
                 />
                 <ListAppointments 
                   appointments={filteredApts}
