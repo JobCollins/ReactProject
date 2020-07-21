@@ -10,7 +10,8 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
-      appointments: []
+      appointments: [],
+      lastIndex: 0
     }
   }
 
@@ -19,6 +20,8 @@ class App extends Component {
     .then(res => res.json())
     .then(result => {
       const appointments = result.map(item => {
+        item.aptId = this.state.lastIndex;
+        this.setState({ lastIndex: this.state.lastIndex +  1})
         return item;
       })
 
