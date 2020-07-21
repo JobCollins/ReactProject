@@ -17,6 +17,7 @@ class App extends Component {
       formDisplay: false,
       orderBy:'petName',
       orderDir:'asc',
+      queryText: '',
       lastIndex: 0,
     }
     this.toggleForm = this.toggleForm.bind(this);
@@ -87,7 +88,7 @@ class App extends Component {
       order=-1
     }
 
-    filteredApts.sort((a, b) => {
+    filteredApts = filteredApts.sort((a, b) => {
       if(a[this.state.orderBy].toLowerCase() < 
       b[this.state.orderBy].toLowerCase()
       ){
@@ -96,7 +97,19 @@ class App extends Component {
       else{
         return 1 * order;
       }
-    })
+    }).filter(eachItem => {
+      return(
+        eachItem['petName']
+        .toLowerCase()
+        .includes(this.state.queryText.toLowerCase()) ||
+        eachItem['ownerName']
+        .toLowerCase()
+        .includes(this.state.queryText.toLowerCase()) ||
+        eachItem['aptNotes']
+        .toLowerCase()
+        .includes(this.state.queryText.toLowerCase())
+      )
+    });
 
     return (
       <main className="page bg-white" id="petratings">
