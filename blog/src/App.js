@@ -4,6 +4,7 @@ import Home from './pages/Home'
 import About from './pages/About'
 import ArticlesList from './pages/ArticlesList'
 import Article from './pages/Article'
+import NavBar from './NavBar'
 import { BrowserRouter as Router, Route} from 'react-router-dom'
 
 
@@ -13,10 +14,14 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Route path="/" component={Home} exact />
-          <Route path="/about" component={About}  />
-          <Route path="/articles" component={ArticlesList}  />
-          <Route path="/article" component={Article}  />
+          <NavBar />
+          <div id="page-body">
+            <Route path="/" component={Home} exact />
+            <Route path="/about" component={About}  />
+            <Route path="/articles" component={ArticlesList}  />
+            <Route path="/article/:name" component={Article}  />
+          </div>
+          
         </div>
       </Router>
       
