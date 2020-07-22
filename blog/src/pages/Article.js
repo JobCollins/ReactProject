@@ -1,7 +1,7 @@
 import React from 'react'
 import ArticlesList from '../components/ArticlesList'
 import articleContent from './article-content'
-import ArticlesListPage from './ArticlesListPage';
+import NotFoundPage from './NotFound'
 
 const Article = ({ match }) => {
     const name = match.params.name;
@@ -9,7 +9,7 @@ const Article = ({ match }) => {
         article => article.name === name
     )
 
-    if(!article) return <h1>Article not found</h1>
+    if(!article) return <NotFoundPage />
 
     const otherArticles = articleContent.filter(
         article => article.name !== name

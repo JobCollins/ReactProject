@@ -5,7 +5,8 @@ import About from './pages/About'
 import ArticlesListPage from './pages/ArticlesListPage'
 import Article from './pages/Article'
 import NavBar from './NavBar'
-import { BrowserRouter as Router, Route} from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import NotFoundPage from './pages/NotFound';
 
 
 
@@ -16,10 +17,14 @@ class App extends Component {
         <div className="App">
           <NavBar />
           <div id="page-body">
-            <Route path="/" component={Home} exact />
-            <Route path="/about" component={About}  />
-            <Route path="/articles" component={ArticlesListPage}  />
-            <Route path="/article/:name" component={Article}  />
+            <Switch>
+              <Route path="/" component={Home} exact />
+              <Route path="/about" component={About}  />
+              <Route path="/articles" component={ArticlesListPage}  />
+              <Route path="/article/:name" component={Article}  />
+              <Route component={NotFoundPage} />
+            </Switch>
+            
           </div>
           
         </div>
