@@ -4,6 +4,7 @@ import articleContent from './article-content'
 import NotFoundPage from './NotFound'
 import CommentsList from '../components/CommentsList'
 import UpVote from '../components/UpVote'
+import AddComment from '../components/AddComment'
 
 const Article = ({ match }) => {
 
@@ -40,6 +41,7 @@ const Article = ({ match }) => {
                 )
             )}
             <UpVote articleName={name} upvotes={articleInfo.upvotes} setArticleInfo={setArticleInfo}/>
+            <AddComment articleName={name} setArticleInfo={setArticleInfo}/>
             <CommentsList comments={articleInfo.comments} />
             <h3>Other Articles:</h3>
             <ArticlesList articles={otherArticles} />
