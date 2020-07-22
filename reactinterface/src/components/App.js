@@ -104,9 +104,12 @@ class App extends Component {
       order=-1
     }
 
+    console.log(`this is filteredApts: ${filteredApts}`)
+
     filteredApts = filteredApts.sort((a, b) => {
-      if(a[this.state.orderBy].toLowerCase() < 
-      b[this.state.orderBy].toLowerCase()
+      if(
+        a[this.state.orderBy].toLowerCase() < 
+        b[this.state.orderBy].toLowerCase()
       ){
         return -1 * order;
       }
