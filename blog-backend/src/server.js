@@ -1,25 +1,38 @@
 import express from 'express'
 import bodyParser from 'body-parser'
+import { MongoClient } from 'mongodb'
 
-
-const articlesInfo = {
-    'learn-react': {
-        upvotes: 0,
-        comments:[],
-    },
-    'learn-node': {
-        upvotes: 0,
-        comments:[],
-    },
-    'my-thoughts-on-resumes': {
-        upvotes: 0,
-        comments:[],
-    },
-}
 
 const app = express();
 
 app.use(bodyParser.json())
+
+app.get(
+    '/api/article/:name', 
+    async (req, res) => {
+        try {
+            const articleName = req.params.name
+
+            const client = await MongoClient.connect(
+                'mongodb://localhost:27017', 
+                { useNewUrlParser: true}
+            )
+
+            const db = client.db('blog')
+
+            const articlesInfo = await db.collection('articles')
+                                        .findOne({ name: articleName})
+            
+            res.status(200).json(articlesInfo)
+            
+            client.close()
+        } catch (error) {
+            res.status(500).json({ message: 'Error connecting to db', error })
+        }
+        
+        
+    }
+)
 
 app.post(
     '/api/article/:name/upvote',
@@ -50,6 +63,6 @@ app.post(
             articlesInfo[articleName]
             )
     }
-    )
+)
 
 app.listen(8000, () => console.log('Listening on port 8000'))
