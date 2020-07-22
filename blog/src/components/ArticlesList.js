@@ -1,11 +1,11 @@
 import React from 'react'
-import articleContent from './article-content'
+import ArticlesListPage from '../pages/ArticlesListPage'
+
 import {Link} from 'react-router-dom'
 
-const ArticlesList = () => (
+const ArticlesList = ({ articles }) => (
     <>
-        <h1>Articles</h1>
-        {articleContent.map(
+        {articles.map(
             (article, key) => (
                 <Link className="article-list-item" key={key} to={`/article/${article.name}`}>
                     <h3>{article.title}</h3>
@@ -20,4 +20,6 @@ const ArticlesList = () => (
     </>
 )
 
-export default ArticlesList;
+
+
+export default ArticlesList
