@@ -14,34 +14,40 @@ class App extends Component {
 
   render() {
     return(
-      <View>
-        <Text style= {styles.title}>Register Account</Text>
-        <TextInput
-          placeholder='Username'
-          onChangeText = { name => this.setState({
-            username:name
-          })}
-          style={styles.TextInputStyle}
-        />
-        <TextInput
-          placeholder='Email'
-          onChangeText= { email => this.setState({
-            email:email
-          })} 
-          style={styles.TextInputStyle}
-        />
-        <TextInput 
-          placeholder='Password'
-          onChangeText={ password => this.setState({
-            password:password
-          })}
-          style={styles.TextInputStyle}
-          secureTextEntry={true}
-        />
+      <>
+        <View style={styles.MainContainer}>
+          <Text style= {styles.title}>Register Account</Text>
+          <TextInput
+            placeholder='Username'
+            onChangeText = { name => this.setState({
+              username:name
+            })}
+            style={styles.TextInputStyle}
+          />
+          <TextInput
+            placeholder='Email'
+            onChangeText= { email => this.setState({
+              email:email
+            })} 
+            style={styles.TextInputStyle}
+          />
+          <TextInput 
+            placeholder='Password'
+            onChangeText={ password => this.setState({
+              password:password
+            })}
+            style={styles.TextInputStyle}
+            secureTextEntry={true}
+          />
 
-        <Button title="Register" onPress={ this.Registration } color="#2196f3"/>
+          <View style={styles.fixToInputs}>
+            <Button title="Register"  width={400} onPress={ this.Registration } color="#2196f3"/>
+          </View>
 
-      </View>
+          
+
+        </View>
+      </>
     );
   } 
 
@@ -50,7 +56,7 @@ class App extends Component {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({
         name: this.state.username,
@@ -59,6 +65,7 @@ class App extends Component {
       })
     }).then((response) => response.json())
       .then((responseJson) => {
+        // console.log(responseJson);
         Alert.alert(responseJson);
       }).catch((error) => {
         console.error(error);
@@ -68,18 +75,18 @@ class App extends Component {
 
 
 const styles = StyleSheet.create({
-  MainContainer :{
- 
+  MainContainer :{ 
     justifyContent: 'center',
     flex:1,
     margin: 10
   },
    
-  TextInputStyleClass: {
+  TextInputStyle: {
    
-    textAlign: 'center',
+    // textAlign: 'center',
     marginBottom: 7,
     height: 40,
+    width: 400,
     borderWidth: 1,
     borderColor: '#2196F3',
     borderRadius: 5 ,
@@ -89,8 +96,12 @@ const styles = StyleSheet.create({
    
     fontSize: 22, 
     color: "#009688", 
-    textAlign: 'center', 
+    // textAlign: 'center', 
     marginBottom: 15
+  },
+  fixToInputs: {
+    height: 40,
+    width: 400,
   }
 })
 

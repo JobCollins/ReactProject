@@ -39,7 +39,7 @@ if (isset($execute)) {
 }
 else{
     #insert the registratin details int registration table
-    $insert_sql = "INSERT INTO registration (name, email, password) values ('$name', '$email', '$password')";
+    $insert_sql = "INSERT INTO registration (username, email, password) values ('$name', '$email', '$password')";
 
     if(mysqli_query($connection, $insert_sql)){
         $msg = 'Registration successful. Go to login.';
@@ -49,10 +49,10 @@ else{
         echo $json_msg;
     }
     else{
-        echo "An error occurred. Try again.";
+        die(mysqli_error($connection));
     }
 }
 
-msqli_close($connection);
+mysqli_close($connection);
 
 ?>
