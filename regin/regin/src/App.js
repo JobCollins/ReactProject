@@ -1,26 +1,99 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component } from 'react';
+import { StyleSheet, View, TextInput, Button, Text, Alert} from 'react-native';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(){
+    super()
+
+    this.state = {
+      username:'',
+      email:'',
+      password:''
+    }
+  } 
+
+  render() {
+    return(
+      <View>
+        <Text style= {styles.title}>Register Account</Text>
+        <TextInput
+          placeholder='Username'
+          onChangeText = { name => this.setState({
+            username:name
+          })}
+          style={styles.TextInputStyle}
+        />
+        <TextInput
+          placeholder='Email'
+          onChangeText= { email => this.setState({
+            email:email
+          })} 
+          style={styles.TextInputStyle}
+        />
+        <TextInput 
+          placeholder='Password'
+          onChangeText={ password => this.setState({
+            password:password
+          })}
+          style={styles.TextInputStyle}
+          secureTextEntry={true}
+        />
+
+        <Button title="Register" onPress={ this.Registration } color="#2196f3"/>
+
+      </View>
+    );
+  } 
+
+  Registration = () => {
+    fetch('http://192.168.100.6/regin/registration.php', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: this.state.username,
+        email: this.state.email,
+        password: this.state.password
+      })
+    }).then((response) => response.json())
+      .then((responseJson) => {
+        Alert.alert(responseJson);
+      }).catch((error) => {
+        console.error(error);
+      });
+  }
 }
 
+
+const styles = StyleSheet.create({
+  MainContainer :{
+ 
+    justifyContent: 'center',
+    flex:1,
+    margin: 10
+  },
+   
+  TextInputStyleClass: {
+   
+    textAlign: 'center',
+    marginBottom: 7,
+    height: 40,
+    borderWidth: 1,
+    borderColor: '#2196F3',
+    borderRadius: 5 ,
+  },
+   
+  title:{
+   
+    fontSize: 22, 
+    color: "#009688", 
+    textAlign: 'center', 
+    marginBottom: 15
+  }
+})
+
 export default App;
+
+
