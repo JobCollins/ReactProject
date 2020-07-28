@@ -1,5 +1,5 @@
 import React, {Component } from 'react';
-import { StyleSheet, View, TextInput, Button, Text, Alert} from 'react-native';
+import { StyleSheet, View, TextInput, Button, Text, Alert } from 'react-native';
 
 class App extends Component {
   constructor(){
@@ -65,8 +65,7 @@ class App extends Component {
       })
     }).then((response) => response.json())
       .then((responseJson) => {
-        // console.log(responseJson);
-        Alert.alert(responseJson);
+        alert(responseJson);
       }).catch((error) => {
         console.error(error);
       });
