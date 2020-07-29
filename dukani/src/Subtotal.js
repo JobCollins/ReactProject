@@ -12,7 +12,10 @@ function Subtotal() {
                 renderText = {(value) => (
                     <>
                         <p>
-                Subtotal ({cart.length} items): <strong>{` ${value} `}</strong>
+                Subtotal ({cart.length} items):
+                        </p>
+                        <p>
+                            <strong>{` ${value} `}</strong>
                         </p>
                     </>
                 )}

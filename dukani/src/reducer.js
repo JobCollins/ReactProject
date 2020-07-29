@@ -1,15 +1,7 @@
 import { useStateValue } from "./StateProvider";
 
 export const initialState = {
-    cart:[
-        {
-            id:"1234",
-            title:"The Lean Startup: How Constant Innovation Creates",
-            price:1100,
-            rating:3,
-            image:"https://images-na.ssl-images-amazon.com/images/I/51T-sMqSMiL._SX329_BO1,204,203,200_.jpg"
-        },
-    ],
+    cart:[],
     user:null,
 }
 
