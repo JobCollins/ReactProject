@@ -14,13 +14,13 @@ function Checkout() {
                 {cart?.length === 0 ? (
                     <div>
                         <h2>Your Shopping Cart is empty</h2>
-                        <p>You have no items in your cart. To buy one or more items, click "Add to Cart" next to the item</p>
+                        <p>You have no items in your cart. To buy one or more items, click "Add to Cart" next to an item</p>
                     </div>
                 ) : (
                     <div>
                         <h2 className="checkout__title">Your Shopping Cart</h2>
                         {/* list items  */}
-                        {cart.map(item => (
+                        {cart?.map((item) => (
                             <CheckoutProduct 
                                 id = {item.id}
                                 title={item.title}
