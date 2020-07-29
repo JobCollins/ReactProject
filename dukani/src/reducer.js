@@ -4,6 +4,8 @@ export const initialState = {
     cart:[],
 }
 
+export const getTotal = (cart) => cart?.reduce((amount, item) => item.price + amount, 0)
+
 function reducer(state, action) {
     console.log(action);
     switch (action.type) {
@@ -13,14 +15,23 @@ function reducer(state, action) {
                 ...state,
                 cart: [...state.cart, action.item],
              }            
-            break;
+            
         case 'REMOVE_FROM_CART':
-            //logic for removing from cart 
+            //logic for removing from cart
+
+            //clone the basket
+            let newCart = [...state.cart] 
+
+            const index = state.cart.findIndex((cartItem) => cartItem.id === action.id)
+
+            if (index >= 0) {
+                //item exists in basket, remove it
+                newCart.splice(index, 1);
+            }
             return { 
-                state
-            }           
-            break;
-    
+                ...state,
+                cart : newCart
+            }    
         default:
             return state;
     }
