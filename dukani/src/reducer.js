@@ -2,6 +2,7 @@ import { useStateValue } from "./StateProvider";
 
 export const initialState = {
     cart:[],
+    user:null,
 }
 
 export const getTotal = (cart) => cart?.reduce((amount, item) => item.price + amount, 0)
@@ -9,6 +10,11 @@ export const getTotal = (cart) => cart?.reduce((amount, item) => item.price + am
 function reducer(state, action) {
     console.log(action);
     switch (action.type) {
+        case "SET_USER":
+            return {
+                ...state,
+                user: action.user,
+            }
         case 'ADD_TO_CART':
             //logic for adding to cart
             return { 
