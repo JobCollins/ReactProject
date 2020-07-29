@@ -3,8 +3,14 @@ import './Header.css'
 import { Link } from 'react-router-dom'
 import SearchIcon from '@material-ui/icons/Search'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import { useStateValue } from './StateProvider'
 
 function Header() {
+    //get the cart
+    const [{ cart }] = useStateValue();
+
+    console.log(cart);
+
     return (
         <nav className="header">
             {/* log on the left */}
@@ -50,7 +56,7 @@ function Header() {
                     {/* shopping cart icon */}
                     <ShoppingCartIcon />
                     {/* number of items in cart */}
-                    <span className="header__optionLineTwo header__basketCount">0</span>
+                    <span className="header__optionLineTwo header__basketCount">{cart?.length}</span>
                 </div>
             </Link>
         </nav>
